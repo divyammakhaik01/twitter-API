@@ -35,12 +35,3 @@ let userRouter = require('./routes/user');
 //define root routes.
 // app.use('/user', userRouter);
 
-
-
-// "username" : "DivyamMakhaik",
-// "password" : "Mango123#
-// 634993b6df9c2163795f2376
-
-// "username" : "Aman Sharma", 
-// "password" : "Mango0000#"
-// 634ee086c010fefffa33ea99
