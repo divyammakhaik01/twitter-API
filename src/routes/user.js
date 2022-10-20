@@ -12,8 +12,4 @@ router.route('/searchUser').post(UserController.searchUser);
 
 
 
-
-// 635052311dcd6f5ddf0a498a
-// 635052861dcd6f5ddf0a498e ajay
-
 module.exports = router;
