@@ -6,7 +6,7 @@
     "start": "NODE_ENV=prod node src/server",
     "dev": "nodemon src/server"
   },
-  "author": "",
+  "author": "Divyam",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.0",
