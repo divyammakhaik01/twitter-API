@@ -43,6 +43,4 @@ app.listen(
 // fetch routes
 let userRouter = require('./routes/user');
 
-//define root routes.
-// app.use('/user', userRouter);
 
