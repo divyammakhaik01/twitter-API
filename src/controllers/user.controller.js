@@ -184,8 +184,49 @@ const searchUser = async(req, res) => {
   
 };
 
-const getTweetsForUser = (req, res) => {
+const getTweetsForUser = async(req, res) => {
   //get all tweets for a user api logic here
+  const {id} = req.params;
+
+  try {
+
+    const user  = await User.findById(id);
+
+    if(!user){
+      return res.json({
+        "status" :"false",
+        "message" : "User not found with given id"
+      })
+    }
+    
+    let userTweetsCount = user.TweetCount;
+    let userTweets = user.Tweets;
+
+    // extracting tweets full detail 
+    let Tweets_data = [];
+    for(let i = 0 ; i < userTweets.length ; i++){
+      let data = await Tweet.findById(userTweets[i]);
+      console.log(data);
+      Tweets_data.push(data)
+    }
+
+    return res.json({
+      "status": "true",
+      "message" : {
+        TweetCount : userTweetsCount , 
+        Tweets : Tweets_data
+      }
+    })
+
+    
+  } catch (error) {
+    return res.json({
+      "status" :"fasle",
+      "message" : error
+    })
+  }
+  
+  
   
 };
 

@@ -9,6 +9,7 @@ router.route('/follow').post(UserController.follow);
 router.route('/getFollowers/:id').get(UserController.getFollowers);
 router.route('/getUserStats/:id').get(UserController.getUserStats);
 router.route('/searchUser').post(UserController.searchUser);
+router.route('/getTweets/:id').get(UserController.getTweetsForUser);
 
 
 
