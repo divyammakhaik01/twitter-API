@@ -6,9 +6,20 @@ const app = express();
 const auth = require('./routes/auth')
 const user = require('./routes/user')
 const tweet = require('./routes/tweet')
+const rateLimit = require("express-rate-limit")
 
 app.use(express.json());
 app.use(cors());
+
+
+const api_rate_limiter = rateLimit({
+  window: 5 * 60 * 1000, // 5 minute
+  max: 100, // limit each IP to 100 requests per window minutes
+});
+
+// Applying  rate limiter  middleware to API calls 
+app.use("/api/", api_rate_limiter);
+
 
 app.use("/api" , auth)
 app.use("/api" , user)
