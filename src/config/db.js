@@ -3,9 +3,8 @@ const mongoose = require('mongoose');
 
 const url = process.env.MONGO_URL;
 
-
 const db = () =>{
-mongoose.connect("mongodb+srv://admin:xfvi5qivEn73DErN@cluster0.agm8q.mongodb.net/?retryWrites=true&w=majority")
+mongoose.connect(url);
 const conn  = mongoose.connection;
 conn.once('open' , () => {
     console.log("database connected ");
