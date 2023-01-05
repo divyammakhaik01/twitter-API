@@ -67,7 +67,7 @@ const register = async (req, res) => {
         message: "user already exist with this username or email",
       });
     }
-    const user = await User.create({ username, password });
+    const user = await User.create({ email , username, password });
     const token = user.getJwtToken();
     res.status(201).json({ success: true, token: token });
   } catch (error) {

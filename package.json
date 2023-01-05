@@ -1,13 +1,14 @@
 {
   "name": "twitter-nodejs-backend",
   "version": "1.0.0",
+  "discription":"Relevel backend assignment using Express",
   "main": "src/server.js",
   "scripts": {
     "start": "NODE_ENV=prod node src/server",
     "dev": "nodemon src/server"
   },
-  "author": "Divyam",
-  "license": "ISC",
+  "author": "Relevel Team",
+  "license": "MIT",
   "dependencies": {
     "bcrypt": "^5.1.0",
     "cors": "^2.8.5",

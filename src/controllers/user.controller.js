@@ -1,5 +1,9 @@
 const Tweet = require("../models/Tweet");
 const User = require("../models/User");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
+
+// 
 
 const follow = async (req, res) => {
   //follow api logic here
@@ -22,6 +26,9 @@ const follow = async (req, res) => {
       });
     }
 
+    let source_username = sourceUser.username;
+
+
     // find destinationUser
 
     const destinationUser = await User.findById(destination_userID);
@@ -34,17 +41,19 @@ const follow = async (req, res) => {
         message: "destinationUser not found",
       });
     }
+    let destination_username = destinationUser.username;
+
 
     // check if sourceUser is already following destUser
     if (sourceUser.following.includes(destinationUser._id)) {
       return res.json({
         status: "false",
-        message: "SourceUser already following DestiUser",
+        message: `${source_username} already following ${destination_username}`,
       });
     }
+    
 
     // current sourceUser following count
-
     const sourceUser_following_Count = sourceUser.followingCount;
 
     // current sourceUser following List
@@ -84,7 +93,7 @@ const follow = async (req, res) => {
 
     return res.json({
       status: "true",
-      message: "success",
+      message: `${source_username} started following ${destination_username}`,
     });
   } catch (error) {
     res.json({
@@ -184,6 +193,7 @@ const searchUser = async(req, res) => {
   
 };
 
+// 
 const getTweetsForUser = async(req, res) => {
   //get all tweets for a user api logic here
   const {id} = req.params;

@@ -23,7 +23,7 @@ const tweet = async (req, res) => {
     }
 
     let curr_user = user[0]._id;
-    const NewTweet = await Tweet.create({ user: curr_user, caption: caption });
+    const NewTweet = await Tweet.create({ user: curr_user, caption: caption } );
 
     let current_tweets_count = user[0].TweetCount;
     let current_user_tweets = user[0].Tweets;
@@ -169,44 +169,10 @@ const likeTweet = async (req, res) => {
 
 // 
 
-const likes_on_tweet = async (req , res) =>{
-  const {TweetID , UserId} = req.body;
-
-  try {
-    const tweet_data = await Tweet.findById(TweetID);
-
-    const likeCount = tweet_data.likesCount;
-    let likes = tweet_data.likes;
-    let likes_data  = [];
-    for(let i = 0 ; i < likes.length ; i++){
-      let data = await User.findById(likes[i]);
-      likes_data.push(data)
-    }
-
-    return res.json({
-      "status" :"true",
-      "message" : {
-        likeCount : likeCount , 
-        likes : likes_data
-      }
-    })
-    
-  } catch (error) {
-    return res.json({
-      status: "false",
-      error: error,
-    });
-  }
-  
-}
-
-// 
-
 const NotesController = {
   tweet,
   deleteTweet,
   likeTweet,
-  likes_on_tweet
 };
 
 module.exports = NotesController;
